@@ -27,6 +27,18 @@ android {
             //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+
+        applicationVariants.all {
+            variant ->
+                variant.outputs.all {
+                    //  + defaultConfig.versionCode  +"_"+buildType.name
+                    /*outputFileName = new File(output.outputFile.parent, "automall_"
+                            + defaultConfig.versionName + "_" + buildType.name + ".apk");*/
+                    variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apks")
+                    outputFileName="jenkins"+defaultConfig.versionName+"_"+buildType.name+".apk";
+
+                }
+        }
     }
 }
 
